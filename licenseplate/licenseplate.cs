@@ -57,8 +57,72 @@ namespace licenseplate
     {
         public static bool HasDuplicates(this List<string> input)
         {
-            // TODO: Implement
-            throw new NotImplementedException();
+            var root = new Node('Z' - 'A' + 1);
+
+            foreach (var line in input)
+            {
+                var exists = true;
+
+                // First character
+                if (root.Children[line[0] - 'A'] == null)
+                {
+                    exists = false;
+                    root.Children[line[0] - 'A'] = new Node('Z' - 'A' + 1);
+                }
+
+                // Second character
+                if (root.Children[line[0] - 'A'].Children[line[1] - 'A'] == null)
+                {
+                    exists = false;
+                    root.Children[line[0] - 'A'].Children[line[1] - 'A'] = new Node('Z' - 'A' + 1);
+                }
+
+                // Third character
+                if (root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'] == null)
+                {
+                    exists = false;
+                    root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'] = new Node(10);
+                }
+
+                // Fourth character
+                if (root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'].Children[line[3] - '0'] == null)
+                {
+                    exists = false;
+                    root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'].Children[line[3] - '0'] = new Node(10);
+                }
+
+                // Fifth character
+                if (root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'].Children[line[3] - '0'].Children[line[4] - '0'] == null)
+                {
+                    exists = false;
+                    root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'].Children[line[3] - '0'].Children[line[4] - '0'] = new Node(10);
+                }
+
+                // Sixth character
+                if (root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'].Children[line[3] - '0'].Children[line[4] - '0'].Children[line[5] - '0'] == null)
+                {
+                    exists = false;
+                    root.Children[line[0] - 'A'].Children[line[1] - 'A'].Children[line[2] - 'A'].Children[line[3] - '0'].Children[line[4] - '0'].Children[line[5] - '0'] = new Node(0);
+                }
+
+                // Check result
+                if (exists)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public class Node
+        {
+            public Node(int size)
+            {
+                Children = new Node[size];
+            }
+
+            public Node[] Children { get; }
         }
     }
 }

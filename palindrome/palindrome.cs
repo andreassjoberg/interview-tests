@@ -20,8 +20,18 @@ namespace palindrome
     {
         public static bool IsPalindrome(this string s)
         {
-            // TODO: Implement
-            throw new NotImplementedException();
+            s = s.ToLower()
+                 .Replace(" ", "")
+                 .Replace(",", "")
+                 .Replace(".", "");
+            for (int i = 0, j = s.Length - 1; i < j; ++i, --j)
+            {
+                if (s[i] != s[j])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
