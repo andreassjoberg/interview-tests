@@ -1,4 +1,4 @@
-# interview-tests
+# Interview Tests
 Repository for interviewing / programming tests.  
 
 ## Palindrome
